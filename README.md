@@ -2,6 +2,7 @@
 
 This project is a collection of web components used to present insightful and entertaining views for complex datasets.  It is a mission to bring order out of chaos, by simplifying the process to track streams of event occurrances and represent this model to authorized users by leveraging several open-source technologies.
 
+<br>
 ---
 
 ### Component Model
@@ -10,12 +11,14 @@ Components are constructed to be similar to game-mechanic tools such as cards, d
 
 > User, Rule, Form, List, Grid, Tile, Coin, Cube, Dice, Card, Hand, Deck, Team, Game, Task, Vote, Test, Rank, Page, Book, Logo, and more.
 
+<br>
 ---
 
 ### Rule Driven
 
 Each Zone is governed by its own set of requirements that sort and segment the items being displayed and which form fields are available by permission.  Sequences of these change-sets are broadcast through the API when appropriate conditions are met, immediately communicated to other connected parties.  Keeping everyone in sync.
 
+<br>
 ---
 
 ### Launchpad Interaction
@@ -24,6 +27,7 @@ The UI is driven by outputs from configurable render state parameters, and condi
 
 * **Node Midi Launchpad** – https://github.com/sydlawrence/node-midi-launchpad
 
+<br>
 ---
 
 ### Software Techniques
@@ -40,6 +44,7 @@ The UI is driven by outputs from configurable render state parameters, and condi
 
 * **A11y** – https://developer.mozilla.org/en-US/docs/Web/Accessibility
 
+<br>
 ---
 
 ### 3rd Party Libraries
