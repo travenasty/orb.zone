@@ -1,4 +1,4 @@
-# Orb.Zone <small>Gamified DataVis Tools</small>
+# Orb.Zone &rarr; Gamified DataVis Tools
 
 This project is a collection of web components used to present insightful and entertaining views for complex datasets.  It is a mission to bring order out of chaos, by simplifying the process to track streams of event occurrances and represent this model to authorized users by leveraging several open-source technologies.
 
