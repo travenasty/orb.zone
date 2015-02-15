@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CSS Orb</title>
+		<style>
+
+.oz-fig {
+	font-family: sans-serif;
+	padding: 2em;
+	line-height: 16px;
+}
+
+.oz-fig-cap {
+	font-size: 0.8em;
+	color: #888;
+	background: #EEE;
+	padding: 1em;
+	margin: 1em 0 0 0;
+}
+
+.oz-eco {
+	width: 32em;
+	height: 32em;
+	position: relative;
+}
+
+.oz-eco::before {
+	position: absolute;
+	content: "";
+	width: 30em;
+	height: 30em;
+	left: 1em;
+	top: 1em;
+	border-radius: 50%;
+	box-shadow: 0 0 0 1em #000;
+}
+
+.oz-eco:hover .oz-orb {
+	transform-origin: center;
+	transform: rotateX(45deg);
+}
+
+.oz-orb {
+	list-style: none;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	background: red;
+	left: 50%;
+	top: 50%;
+	transform-style: preserve-3d;
+	transform: rotateX(135deg) rotateY(90deg) rotateZ(90deg);;
+	transition: all 1s;
+}
+
+.oz-cir {
+	position: absolute;
+	list-style: none;
+	margin: 0;
+	width: 30em;
+	height: 30em;
+	top: -15em;
+	left: -15em;
+	box-shadow: 2em 0 0 0 #000, -2em 0 0 0 #000;
+	border-radius: 50%;
+	transform-style: preserve-3d;
+}
+
+.oz-cir.c1 {
+}
+
+.oz-cir.c2 {
+	transform: rotateY(60deg);
+}
+.oz-cir.c3 {
+	transform: rotateY(-60deg);
+}
+.oz-cir.c4 {
+	transform: rotateX(90deg);
+}
+
+		</style>
+	</head>
+	<body>
+
+<!-- Sample Ecosystem -->
+<figure class="oz-fig">
+	<div class="oz-eco">
+		<ul class="oz-orb">
+			<li class="oz-cir c1"></li>
+			<li class="oz-cir c2"></li>
+			<li class="oz-cir c3"></li>
+			<li class="oz-cir c4"></li>
+		</ul>
+	</div>
+
+	<figcaption class="oz-fig-cap">
+		CSS 3D Transformed HTML Sphere
+	</figcaption>
+<figure>
+<!-- /orb -->
+
+	</body>
+</html>
