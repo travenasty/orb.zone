@@ -1,10 +1,13 @@
 # Orb.Zone &rarr; _Gamified DataVis Tools_
 
-This project is a collection of web components used to present insightful and entertaining views for complex datasets.  It is a mission to bring order out of chaos, by simplifying the process to track streams of event occurrances and represent this model to authorized users by leveraging several open-source technologies.
-
+<div style="float:left;margin:0 2em 1em 0" markdown="1">
 ![Orb.Zone Logo](https://raw.githubusercontent.com/travenasty/orb.zone/9382a9536a1dceea05223f05f4f83a0e72744802/docs/orb-zone-logo-300.png)
+</div>
 
-<br>
+This project is a collection of web components used to present insightful and entertaining views of complex datasets.  It is a mission to bring order out of chaos, by simplifying the process to track streams of event occurrences and represent this model to authorized users by leveraging several open-source technologies.
+
+
+<br style="clear:both">
 ---
 
 ### Component Model
