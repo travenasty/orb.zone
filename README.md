@@ -1,4 +1,4 @@
-# ***Orb.Zone*** - Gamified DataVis Tools
+# Orb.Zone <small>Gamified DataVis Tools</small>
 
 This project is a collection of web components used to present insightful and entertaining views for complex datasets.  It is a mission to bring order out of chaos, by simplifying the process to track streams of event occurrances and represent this model to authorized users by leveraging several open-source technologies.
 
@@ -14,7 +14,7 @@ Components are constructed to be similar to game-mechanic tools such as cards, d
 <br>
 ---
 
-### Rule Driven
+### Rule Driven Results
 
 Each Zone is governed by its own set of requirements that sort and segment the items being displayed and which form fields are available by permission.  Sequences of these change-sets are broadcast through the API when appropriate conditions are met, immediately communicated to other connected parties.  Keeping everyone in sync.
 
@@ -34,22 +34,24 @@ The UI is driven by outputs from configurable render state parameters, and condi
 
 **Offline first**, the client holds onto a whole representation of the working-model (as much as the user is granted access) so that any decision can be made without the need of fetching additional resources.  Each client can operate without a network connection, and essentially continue where it left off when connected.
 
-* **HTML5 LocalStorage** – https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage
+* **HTML5 Storage** – https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage
+
+**Built with accessibility in mind**, the controls are designed to work via keyboard, touch or mouse and incorporate audio and visual inputs/outputs through HTML5 based WebAudio and WebRTC standards.
+
+* **A11y** – https://developer.mozilla.org/en-US/docs/Web/Accessibility
+* **WebAudio API** – http://webaudio.github.io/web-audio-api
+* **WebMidi API** – http://webaudio.github.io/web-midi-api
 
 **Reactive**, the audio and visual output produced is a direct result of the collections being monitored, these streams of information are immutable, reflected into views by map-reduced patterns and constraints.  Entirely Data-driven.
 
 * **Reactive Manifesto** – http://www.reactivemanifesto.org
-
-**Built with accessibility in mind**, the controls are designed to work via keyboard, touch or mouse and incorporate audio and visual inputs/outputs through HTML5 based WebAudio and WebRTC standards.  
-
-* **A11y** – https://developer.mozilla.org/en-US/docs/Web/Accessibility
 
 <br>
 ---
 
 ### 3rd Party Libraries
 
-This project is made possible by building upon the foundation of several external projects.
+This project is made possible by combining and building upon the foundation of several external projects.
 
 * **MsgPack** – Compact data exchange format – http://msgpack.org
 * **WebPack** – Module bundler and loader – https://github.com/webpack/webpack
