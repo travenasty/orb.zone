@@ -1,0 +1,39 @@
+{
+  "name": "orb-zone",
+  "version": "0.0.1",
+  "author": "Travis Barney",
+  "description": "Gamified data-vis tools",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:travenasty/orb-zone.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/travenasty/orb.zone/issues"
+  },
+  "homepage": "https://github.com/travenasty/orb.zone",
+  "dependencies": {
+    "@cycle/core": "3.1.x",
+    "@cycle/dom": "5.1.x",
+    "lodash.mapvalues": "^3.0.1",
+    "express": "^4.13.3",
+    "falcor-express": "^0.1.2",
+    "falcor-router": "^0.2.9"
+  },
+  "devDependencies": {
+    "babel": "^5.1.13",
+    "babelify": "6.2.x",
+    "browserify": "11.0.1",
+    "postcss": "^5.0.4",
+    "uglify-js": "2.4.24"
+  },
+  "scripts": {
+    "install": "npm install --global postcss-cli autoprefixer",
+    "build-debug": "mkdir -p public/js && mkdir -p public/css && browserify src/app.js -t babelify --outfile public/js/app.js",
+    "build-css": "postcss --use autoprefixer src/app.css -d public/css/",
+    "uglify": "uglifyjs public/js/app.js -o public/js/app.min.js",
+    "build": "npm run build-debug && npm run build-css && npm run uglify"
+  }
+}

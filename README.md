@@ -2,7 +2,7 @@
 
 This project is a collection of web components used to present insightful and entertaining views of complex datasets.  It is a mission to bring order out of chaos, by simplifying the process to track streams of event occurrences and represent this model to authorized users by leveraging several open-source technologies.
 
-![Orb.Zone Logo](https://raw.githubusercontent.com/travenasty/orb.zone/30144be44252482fb39b59199296b7f18c576e56/docs/orb-zone-logo-500.png)
+![Orb.Zone Logo](https://raw.githubusercontent.com/travenasty/orb.zone/master/docs/orb-zone-logo-300.png)
 
 <br>
 ---
@@ -55,10 +55,9 @@ The UI is driven by outputs from configurable render state parameters, and condi
 
 This project is made possible by combining and building upon the foundation of several external projects.
 
-* **MsgPack** – Compact data exchange format – http://msgpack.org
-* **WebPack** – Module bundler and loader – https://github.com/webpack/webpack
-* **Angular2** – UI glue and URL router – https://github.com/angular/angular
+* **CycleJS** – Reactive framework for Human-Computer interaction – http://cycle.js.org/
+* **Falcor** – Efficient data fetching – https://github.com/Netflix/falcor
 * **Socket.IO** – Live data channels – http://socket.io
-* **IO.JS** – Service endpoint API – https://iojs.org
+* **IO.JS** – Service endpoint layer – https://iojs.org
 * **Redis** – Data persistence – http://redis.io
 * **Juju** – Host manager – https://juju.ubuntu.com
