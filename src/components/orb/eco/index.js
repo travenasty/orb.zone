@@ -1,3 +1,5 @@
+// Eco is a landscape or structure that can contain or sustain mass.
+
 import {Rx} from '@cycle/core';
 import intent from './intent';
 import model from './model';

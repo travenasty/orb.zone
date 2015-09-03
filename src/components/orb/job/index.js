@@ -1,3 +1,5 @@
+// Job is a single or reoccuring task that can be completed.
+
 import {Rx} from '@cycle/core';
 import intent from './intent';
 import model from './model';
