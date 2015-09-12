@@ -4,9 +4,9 @@ import {Rx} from '@cycle/core';
 import intent from './intent';
 import model from './model';
 import view from './view';
-import deserialize from './falcor-source';
-import serialize from './falcor-sink';
-import ecoItem from '../../eco-item';
+import deserialize from './source';
+import serialize from './sink';
+import ecoItem from './item';
 import mapValues from 'lodash.mapvalues';
 
 function amendStateWithChildren(DOM) {
@@ -46,15 +46,15 @@ console.log("replicateAll", proxyStreams);
 }
 
 function ecos({DOM, falcorSource}) {
-console.log("ecos DOM", DOM);
+//console.log("ecos DOM", DOM);
   let sourceEcosData$ = deserialize(falcorSource);
   let typeItemActions = {toggle$: null, edit$: null, delete$: null};
   let proxyItemActions = mapValues(typeItemActions, () => new Rx.Subject());
   let actions = intent(DOM, proxyItemActions);
   let state$ = model(actions, sourceEcosData$).shareReplay(1);
   let amendedState$ = state$.map(amendStateWithChildren(DOM)).shareReplay(1);
-console.log("amendedState$", amendedState$);
   let itemActions = makeItemActions(typeItemActions, amendedState$);
+//console.log("amendedState$", amendedState$);
   replicateAll(typeItemActions, itemActions, proxyItemActions);
   return {
     DOM: view(amendedState$),

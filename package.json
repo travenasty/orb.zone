@@ -23,15 +23,21 @@
     "falcor-express": "^0.1.2",
     "falcor-ioredis": "0.0.5",
     "falcor-router": "^0.2.9",
+    "gsap": "^1.18.0",
     "ioredis": "^1.8.0",
-    "lodash.mapvalues": "^3.0.1"
+    "lodash": "^3.10.1",
+    "lodash.mapvalues": "^3.0.1",
+    "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
     "babel": "^5.1.13",
     "babelify": "6.2.x",
     "browserify": "11.0.1",
+    "chai": "^3.2.0",
+    "chai-virtual-dom": "^1.0.0",
     "postcss": "^5.0.4",
-    "uglify-js": "2.4.24"
+    "uglify-js": "2.4.24",
+    "virtual-dom": "^2.1.1"
   },
   "scripts": {
     "install": "npm install --global postcss-cli autoprefixer",

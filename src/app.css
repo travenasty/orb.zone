@@ -72,3 +72,9 @@
 	transform: rotateX(90deg);
 }
 
+
+/* JOBS */
+.oz-job {
+  font-family: sans-serif;
+  background: #EEE;
+}

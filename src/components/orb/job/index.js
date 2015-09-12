@@ -4,9 +4,9 @@ import {Rx} from '@cycle/core';
 import intent from './intent';
 import model from './model';
 import view from './view';
-import deserialize from './local-storage-source';
-import serialize from './local-storage-sink';
-import jobItem from '../../job-item';
+import deserialize from './source';
+import serialize from './sink';
+import jobItem from './item';
 import mapValues from 'lodash.mapvalues';
 
 function amendStateWithChildren(DOM) {
@@ -18,7 +18,7 @@ function amendStateWithChildren(DOM) {
           id: data.id,
           title: data.title,
           completed: data.completed,
-          jobItem: jobItem({DOM, props$}, `.oz-job-item${data.id}`)
+          jobItem: jobItem({DOM, props$}, `.oz-job-item--${data.id}`),
         };
       }),
       filter: jobsData.filter,
@@ -44,13 +44,11 @@ function replicateAll(objectStructure, realStreams, proxyStreams) {
 }
 
 function jobs({DOM, hashchange, initialHash, localStorageSource}) {
-console.log("jobs DOM", DOM);
   let sourceJobsData$ = deserialize(localStorageSource);
   let typeItemActions = {toggle$: null, edit$: null, delete$: null};
   let proxyItemActions = mapValues(typeItemActions, () => new Rx.Subject());
   let actions = intent(DOM, hashchange, initialHash, proxyItemActions);
   let state$ = model(actions, sourceJobsData$).shareReplay(1);
-console.log("sourceJobsData$", sourceJobsData$);
   let amendedState$ = state$.map(amendStateWithChildren(DOM)).shareReplay(1);
   let itemActions = makeItemActions(typeItemActions, amendedState$);
   replicateAll(typeItemActions, itemActions, proxyItemActions);

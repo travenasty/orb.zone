@@ -1,6 +1,6 @@
 import {Rx} from '@cycle/core';
 import {h} from '@cycle/dom';
-import {propHook, ENTER_KEY, ESC_KEY} from '../utils';
+import {propHook, ENTER_KEY, ESC_KEY} from '../../../utils';
 
 function intent(DOM, name = '') {
   return {

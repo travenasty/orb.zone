@@ -1,16 +1,4 @@
-function merge() {
-  let result = {};
-  for (let i = 0; i < arguments.length; i++) {
-    let object = arguments[i];
-    for (let key in object) {
-      if (object.hasOwnProperty(key)) {
-        result[key] = object[key];
-      }
-    }
-  }
-  return result;
-}
-
+const _ = require('lodash'); 
 const safeJSONParse = str => JSON.parse(str) || {};
 
 const mergeWithDefaultJobsData = jobsData => {
@@ -19,7 +7,7 @@ const mergeWithDefaultJobsData = jobsData => {
     filter: '',
     filterFn: () => true // allow anything
   };
-  return merge(defaultJobsData, jobsData);
+  return _.merge(defaultJobsData, jobsData);
 }
 
 export default function deserialize(localStorageValue$) {

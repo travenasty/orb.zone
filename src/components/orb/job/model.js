@@ -1,10 +1,12 @@
 import {Rx} from '@cycle/core';
+import oz from '../../../oz';
 
 function getFilterFn(route) {
   switch (route) {
     case '/active': return (task => task.completed === false);
     case '/completed': return (task => task.completed === true);
-    default: return () => true; // allow anything
+    case '/mine': return (task => task.ownerId === oz.user.id); 
+    default: return () => true; // show all 
   }
 }
 

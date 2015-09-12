@@ -17,10 +17,7 @@ function makeLocalStorageSinkDriver(keyName) {
 }
 
 function makeFalcorSourceDriver(keyName) {
-  model.get("gameById.a.foo")
-    .then(function(response) {
-      console.log("gameById:", response);
-    });
+  model.get("gameById['a'].foo").then(foo => console.log("got foo:", foo));
   return () => Rx.Observable.just(1);
 }
 
