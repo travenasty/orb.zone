@@ -19,6 +19,7 @@
 	width: 32em;
 	height: 32em;
 	position: relative;
+	transform-origin: center;
 }
 .oz-eco::before {
 	position: absolute;
@@ -34,7 +35,9 @@
 	transform-origin: center;
 	transform: rotateX(45deg);
 }
-.oz-orb {
+
+/* OUTER ORBIT GUIDELINES */
+.oz-orbit {
 	list-style: none;
 	position: absolute;
 	margin: 0;
@@ -48,7 +51,7 @@
 	transform: rotateX(135deg) rotateY(90deg) rotateZ(90deg);;
 	transition: all 1s;
 }
-.oz-cir {
+.oz-orbit .oz-cir {
 	position: absolute;
 	list-style: none;
 	margin: 0;
@@ -60,17 +63,194 @@
 	border-radius: 50%;
 	transform-style: preserve-3d;
 }
-.oz-cir--1 {
+.oz-orbit .oz-cir:nth-child(1) {
 }
-.oz-cir--2 {
+.oz-orbit .oz-cir:nth-child(2) {
 	transform: rotateY(60deg);
 }
-.oz-cir--3 {
+.oz-orbit .oz-cir:nth-child(3) {
 	transform: rotateY(-60deg);
 }
-.oz-cir--4 {
+.oz-orbit .oz-cir:nth-child(4) {
 	transform: rotateX(90deg);
 }
+
+
+/* INNER SPHERE */
+.oz-eco:hover .oz-orb {
+	transform: rotateY(60deg) rotateX(30deg);
+}
+.oz-eco:focus .oz-orb {
+	transform: rotateY(-30deg) rotateX(-60deg);
+}
+
+.oz-orb {
+  font-family: sans-serif;
+	left: 16em;
+	top: 16em;
+  width: 0;
+  height: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+	transform-style: preserve-3d;
+	transform: translateY(0) translateX(0);
+	transition: all 1s;
+}
+.oz-orb-face {
+  position: absolute;
+  display: none;
+}
+.oz-orb-face:nth-child(1) {
+  right: 0;
+}
+
+.oz-orb-face-dots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.oz-orb-face-dot {
+  width: 1px;
+  height: 1px;
+  box-shadow: 0 0 0.5em 0 navy;
+  border-radius: 50%;
+  position: absolute;
+  color: #000;
+  font-size: 11px;
+}
+
+/* ONLY SHOWING 1st FACE FOR NOW */
+.oz-orb-face:nth-child(1) {
+  display: block;
+}
+
+/* FIRST ROW */
+.oz-orb-face-dot:nth-child(1) {
+  transform: translateZ(23em) rotateY(0) rotateX(4deg);
+}
+/* SECOND ROW */
+.oz-orb-face-dot:nth-child(n+2):nth-child(n-3) {
+  transform: translateZ(22em) rotateX(8deg);
+}
+/* THIRD ROW */
+.oz-orb-face-dot:nth-child(n+4):nth-child(n-6) {
+  transform: translateZ(21em) rotateX(12deg);
+}
+/* FOURTH ROW */
+.oz-orb-face-dot:nth-child(n+7):nth-child(n-11) {
+  transform: translateZ(20em) rotateX(16deg);
+}
+/* FIFTH ROW */
+.oz-orb-face-dot:nth-child(n+12):nth-child(n-17) {
+  transform: translateZ(19em) rotateX(20deg);
+}
+/* SIXTH ROW */
+.oz-orb-face-dot:nth-child(n+18):nth-child(n-24) {
+  transform: translateZ(18em) rotateX(24deg);
+}
+
+.oz-orb-face-dot:nth-child(2) {
+  color: pink;
+}
+
+/* OLD ORB
+.eco:hover .orb {
+	transform-origin: center;
+	transform: translateY(-1em) translateX(-1em) rotateY(60deg) rotateX(90deg);
+}
+
+.eco:hover .dot::before,
+.eco:hover .dot::after {
+	opacity: 1;
+}
+
+.orb {
+	transform-style: preserve-3d;
+	transform: translateY(-1em) translateX(-1em);
+	border-color: rgba(0, 0, 255, 0.25) transparent;
+	border-width: 1em;
+	border-style: solid;
+	width: 0;
+	width: 0;
+	position: absolute;
+	left: 6em;
+	top: 6em;
+	transition: all 1s;
+}
+
+.face {
+	list-style: none;
+	margin: 0;
+	transform-style: preserve-3d;
+}
+
+.face.f2 {
+	opacity: 0.5;
+	transform: rotateX(180deg);
+}
+.face.f3 {
+	opacity: 0.5;
+	transform: rotateY(180deg);
+}
+.face.f4 {
+	transform: rotateX(180deg) rotateY(180deg);
+}
+
+.eco:hover .face.f2 .dot.a::after,
+.eco:hover .face.f4 .dot.a::after {
+	opacity: 0;
+	background: transparent !important;
+}
+
+.dot {
+	margin: 0;
+	left: -1em;
+	top: -1em;
+	position: absolute;
+	line-height: 2em;
+	text-align: center;
+	width: 2em;
+	height: 2em;
+	border-radius: 50%;
+	background: rgba(255, 0, 0, 0.5);
+	transition: all 1s;
+	transform-style: preserve-3d;
+}
+
+.dot.a { transform: rotateX(90deg) translateZ(6em); }
+.dot.b { transform: rotateX(70deg) translateZ(6em); }
+.dot.c { transform: rotateX(50deg) translateZ(6em); }
+.dot.d { transform: rotateX(30deg) translateZ(6em); }
+.dot.e { transform: rotateX(10deg) translateZ(6em); }
+
+.dot::before,
+.dot::after {
+	opacity: 0.6;
+	left: 0;
+	top: 0;
+	position: absolute;
+	display: block;
+	content: "X";
+	color: rgba(0, 0, 0, 0.25);
+	width: 2em;
+	height: 2em;
+	border-radius: 50%;
+}
+
+.dot::before {
+	transform: rotateY(90deg);
+	background: rgba(0, 255, 0, 0.25);
+}
+
+.dot::after {
+	transform: rotateX(90deg);
+	background: rgba(0, 0, 255, 0.25);
+}
+
+*/
 
 
 /* JOBS */

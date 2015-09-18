@@ -1,8 +1,5 @@
 import {Rx} from '@cycle/core';
-
-var model = new falcor.Model({
-  source: new falcor.HttpDataSource('/model.json') 
-});
+import {makeFalcorSourceDriver, makeFalcorSinkDriver} from './drivers/falcor';
 
 function makeLocalStorageSourceDriver(keyName) {
   return () => Rx.Observable.just(localStorage.getItem(keyName));
@@ -16,17 +13,9 @@ function makeLocalStorageSinkDriver(keyName) {
   };
 }
 
-function makeFalcorSourceDriver(keyName) {
-  model.get("gameById['a'].foo").then(foo => console.log("got foo:", foo));
-  return () => Rx.Observable.just(1);
-}
-
-function makeFalcorSinkDriver(keyName) {
-  return function (keyValue$) {
-    keyValue$.subscribe(keyValue => {
-      console.log("write to falcor:", keyName, keyValue);
-    });
-  };
-}
-
-export default {makeLocalStorageSinkDriver, makeLocalStorageSourceDriver, makeFalcorSourceDriver, makeFalcorSinkDriver};
+export default {
+  makeLocalStorageSinkDriver, 
+  makeLocalStorageSourceDriver, 
+  makeFalcorSourceDriver, 
+  makeFalcorSinkDriver,
+};

@@ -10,7 +10,6 @@ import ecoItem from './item';
 import mapValues from 'lodash.mapvalues';
 
 function amendStateWithChildren(DOM) {
-console.log("amendStateWithChildren", DOM);
   return function (ecosData) {
     return {
       list: ecosData.list.map(data => {
@@ -28,7 +27,6 @@ console.log("amendStateWithChildren", DOM);
 }
 
 function makeItemActions(typeItemActions, amendedState$) {
-console.log("makeItemActions", typeItemActions, amendedState$);
   return mapValues(typeItemActions, (irrelevant, actionKey) => 
     amendedState$
     .filter(ecosData => ecosData.list.length)
@@ -39,14 +37,13 @@ console.log("makeItemActions", typeItemActions, amendedState$);
 }
 
 function replicateAll(objectStructure, realStreams, proxyStreams) {
-console.log("replicateAll", proxyStreams);
   mapValues(objectStructure, (irrelevant, key) => {
     realStreams[key]
   });
 }
 
 function ecos({DOM, falcorSource}) {
-//console.log("ecos DOM", DOM);
+  console.log("eco falcorSource:", falcorSource);
   let sourceEcosData$ = deserialize(falcorSource);
   let typeItemActions = {toggle$: null, edit$: null, delete$: null};
   let proxyItemActions = mapValues(typeItemActions, () => new Rx.Subject());
@@ -54,7 +51,6 @@ function ecos({DOM, falcorSource}) {
   let state$ = model(actions, sourceEcosData$).shareReplay(1);
   let amendedState$ = state$.map(amendStateWithChildren(DOM)).shareReplay(1);
   let itemActions = makeItemActions(typeItemActions, amendedState$);
-//console.log("amendedState$", amendedState$);
   replicateAll(typeItemActions, itemActions, proxyItemActions);
   return {
     DOM: view(amendedState$),

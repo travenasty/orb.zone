@@ -5,5 +5,5 @@ module.exports = {
   password: 'love-mother-earth',
   db: 0,
   enableReadyCheck: true,
-  keyPrefix: 'oz:'
+  keyPrefix: '' // TODO : Fix falcor-ioredis to query with keyPrefix
 };

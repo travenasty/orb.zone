@@ -2,7 +2,7 @@ import {Rx} from '@cycle/core';
 import {ENTER_KEY, ESC_KEY} from '../../../utils';
 
 export default function intent(DOM, itemActions) {
-  const getEcoItemId = (name) => parseInt(name.replace('.eco-item', ''))
+  const getEcoItemId = (name) => parseInt(name.replace('.eco-item', ''));
 
   return {
     clearInput$: DOM.select('.new-eco')
