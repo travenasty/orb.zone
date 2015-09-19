@@ -88,7 +88,7 @@ var Ozm = function() {
           road: ["Oz","Earth","Walmart","Camping","Tents","Returns","Policy"],
         })
       }
-    }
+    },
     "bios": {
       "0": {
         "name": "Travis",
@@ -103,7 +103,7 @@ var Ozm = function() {
         "name": "Knife",
         "weight": "12kg",
       })
-    }
+    },
     "arts": {
       "0": {
         "name": "Karate",
@@ -114,7 +114,7 @@ var Ozm = function() {
       }
     },
 
-    "jobById:" {
+    "jobById": {
       "100": $atom({
         "name": "Wash Dishes",
         "access": "",
@@ -126,13 +126,28 @@ var Ozm = function() {
       }
     },
 
+    "vowById": {
+      "100": $atom({
+        "name": "Be Punctual",
+        "": "",
+      })
+    },
     "vows": {
       "0": {
         "name": "Silence"
       }
     },
 
+    "logById": {
+      "100": $atom({
+        utc: 1234567890,
+        bio: $ref("bioById", "12345abc"),
+      })
+    },
     "logs": {
+      "auth": [
+        $ref("logById", 100),
+      ],
       0: {
         utc: 1234567890,
       }

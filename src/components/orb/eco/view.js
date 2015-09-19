@@ -10,28 +10,44 @@ console.log("renderCaption");
 }
 
 function renderEco() {
-  let dots = function(rows = 21) {
-    let rowDeg = (90/rows).toFixed(3);
+  let pyra = function(steps = 22, color = "#F22") {
+    let step = 0;
+    let colsDeg = 0;
+    let rowColsDeg = 0;
+    let rowDeg = 90 / (steps);
+    let colDeg = 60 / (steps);
+    let rowStepDeg = colDeg;
     let rowsDeg = 0;
-console.log("rowDeg:", rowDeg);
+
     return h('ul.oz-orb-face-dots', 
-      _.times(rows, (row) => {
+      _.times(steps, (row) => {
+        colsDeg = 0;
         row = row + 1;
-console.log("row:", row);
-        rowsDeg += rowDeg;
-        let colDeg = (60/row).toFixed(3);
-console.log("colDeg:", colDeg);
-        let colsDeg = 0;
-        return _.times(row, (rowDot) => {
-console.log("rowDot:", rowDot);
-          let dot = h('li.oz-orb-face-dot', { 
+        rowsDeg -= rowDeg;
+        rowColsDeg = rowsDeg;
+
+        return _.times(row, (col) => {
+          let trans = `
+            rotateX(${rowColsDeg}deg)
+            rotateY(${colsDeg}deg)
+            rotateZ(${colsDeg}deg)
+            translateZ(${steps * 1.5}em)
+          `;
+          let dot = h('li.oz-orb-face-dot', {
+            dataset: {
+              step: step,
+              orb: 1,
+            },
             style: {
-              'background-color': '#f22',
-              'transform': `translateZ(15em) rotateX(${rowsDeg}) rotateY(${colsDeg})`
+              borderColor: color,
+              transform: trans,
             }
-          }, rowDot);
-console.log("dot:", dot);
+          }, step);
+
+          rowColsDeg += rowStepDeg;
           colsDeg += colDeg;
+          step += 1;
+
           return dot;
         })
       })
@@ -45,7 +61,22 @@ console.log("oz-eco...");
   }, [
     h('ul.oz-orb', [
       h('li.oz-orb-face', [
-        dots()
+        pyra(12, '#F33'),
+      ]),
+      h('li.oz-orb-face', [
+        pyra(12, '#3F3'),
+      ]),
+      h('li.oz-orb-face', [
+        pyra(12, '#33F'),
+      ]),
+      h('li.oz-orb-face', [
+        pyra(12, '#966'),
+      ]),
+      h('li.oz-orb-face', [
+        pyra(12, '#696'),
+      ]),
+      h('li.oz-orb-face', [
+        pyra(12, '#669'),
       ]),
     ]),
 
