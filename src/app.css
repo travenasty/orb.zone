@@ -25,6 +25,16 @@
   outline: none;
 }
 .oz-eco::before {
+  content: "";
+  position: absolute;
+  width: 24em;
+  height: 24em;
+  background: #FFF;
+  border-radius: 50%;
+  left: 4em;
+  top: 4em;
+}
+.oz-eco::after {
 	position: absolute;
 	content: "";
 	width: 30em;
@@ -41,6 +51,7 @@
 
 /* OUTER ORBIT GUIDELINES */
 .oz-orbit {
+  display: none;
 	list-style: none;
 	position: absolute;
 	margin: 0;
@@ -103,8 +114,18 @@
 	transition: all 1s;
 }
 
+.oz-orb-hemi {
+  transform-style: preserve-3d;
+}
+.oz-orb-hemi:nth-child(2) {
+  transform: rotateX(180deg);
+}
+
 .oz-orb-face {
   position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 	transform-style: preserve-3d;
 }
 .oz-orb-face:nth-child(2) {
@@ -123,27 +144,16 @@
   transform: rotateZ(300deg);
 }
 
-
-.oz-orb-face-dots {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .oz-orb-face-dot {
-  width: 1px;
-  height: 1px;
-  border-radius: 50%;
-  border: rgba(0,0,0, 0.3) 4px solid;
-  backface-visibility: hidden;
   position: absolute;
   color: transparent;
   font-size: 11px;
-}
-
-/* ONLY SHOWING 1st FACE FOR NOW */
-.oz-orb-face:nth-child(1) {
-  display: block;
+  width: 1px;
+  height: 1px;
+  border: rgba(0,0,0, 0.3) 4px solid;
+  border-radius: 50%;
+  transform-origin: left;
+  backface-visibility: hidden;
 }
 
 /* JOBS */

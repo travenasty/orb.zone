@@ -3,80 +3,77 @@ import {h} from '@cycle/dom';
 import _ from 'lodash';
 
 function renderCaption() {
-console.log("renderCaption");
   return h('figcaption.oz-fig-cap', 
     'CSS 3D Transformed HTML Sphere'
   );
 }
 
 function renderEco() {
-  let pyra = function(steps = 22, color = "#F22") {
-    let step = 0;
-    let colsDeg = 0;
-    let rowColsDeg = 0;
-    let rowDeg = 90 / (steps);
-    let colDeg = 60 / (steps);
-    let rowStepDeg = colDeg;
-    let rowsDeg = 0;
+  let pyra = function(rows = 22, scale = 1, color = "#F22") {
+    const ANG = 90 / (rows + 1);
+    const RAD = rows * scale;
+    const LEN = (Math.PI / 2) / (rows + 1);
+    const TAN30 = Math.tan(30);
 
-    return h('ul.oz-orb-face-dots', 
-      _.times(steps, (row) => {
-        colsDeg = 0;
-        row = row + 1;
-        rowsDeg -= rowDeg;
-        rowColsDeg = rowsDeg;
+    let rotX = 0;
+    let rotY = 0;
+    let rowDeg = 0;
+    let step = 1;
+    let xDeg = 90 / rows;
+    let yDeg = 0;
 
-        return _.times(row, (col) => {
-          let trans = `
-            rotateX(${rowColsDeg}deg)
-            rotateY(${colsDeg}deg)
-            rotateZ(${colsDeg}deg)
-            translateZ(${steps * 1.5}em)
-          `;
-          let dot = h('li.oz-orb-face-dot', {
-            dataset: {
-              step: step,
-              orb: 1,
-            },
-            style: {
-              borderColor: color,
-              transform: trans,
-            }
-          }, step);
+    return _.times(rows, (row) => {
+      row = row + 1;
+      rowDeg -= xDeg;
+      rotX = rowDeg;
+      rotY = 0;
+      yDeg = 60 / row;
 
-          rowColsDeg += rowStepDeg;
-          colsDeg += colDeg;
-          step += 1;
+      console.log("yDeg:", yDeg, "row:", row);
 
-          return dot;
-        })
+      return _.times(row, (col) => {
+        let transform = `
+          rotateX(${rotX}deg)
+          rotateY(${rotY}deg)
+          translateZ(${RAD}em)
+        `;
+
+        let dot = h('li.oz-orb-face-dot', {
+          dataset: {
+            tri: 1,
+            dot: step,
+            rotX: rotX,
+            rotY: rotY,
+          },
+          style: {
+            borderColor: color,
+            transform: transform,
+          }
+        }, step);
+
+        rotY += yDeg;
+        step += 1;
+
+        return dot;
       })
-    );
+    });
   };
 
-console.log("oz-eco...");
+  let pyraFace = (color) => {
+    return h('ul.oz-orb-face', [
+      pyra(12, 1.5, color),
+    ])
+  };
 
   return h('div.oz-eco', {
     attributes: {tabindex: "0"}
   }, [
     h('ul.oz-orb', [
-      h('li.oz-orb-face', [
-        pyra(12, '#F33'),
+      h('li.oz-orb-hemi', [
+        ["#F33","#3F3","#33F","#966","#696","#669"].map(pyraFace)
       ]),
-      h('li.oz-orb-face', [
-        pyra(12, '#3F3'),
-      ]),
-      h('li.oz-orb-face', [
-        pyra(12, '#33F'),
-      ]),
-      h('li.oz-orb-face', [
-        pyra(12, '#966'),
-      ]),
-      h('li.oz-orb-face', [
-        pyra(12, '#696'),
-      ]),
-      h('li.oz-orb-face', [
-        pyra(12, '#669'),
+      h('li.oz-orb-hemi', [
+        ["#5AA","#A5A","#AA5","#CBB","#BCB","#BBC"].map(pyraFace)
       ]),
     ]),
 
@@ -91,7 +88,6 @@ console.log("oz-eco...");
 }
 
 export default function view(ecos$) {
-console.log("eco-view", ecos$);
   return ecos$.map(ecos =>
     h('figure.oz-fig', [
       renderEco(),
