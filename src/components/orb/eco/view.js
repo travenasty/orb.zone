@@ -9,41 +9,46 @@ function renderCaption() {
 }
 
 function renderEco() {
-  let pyra = function(rows = 22, scale = 1, color = "#F22") {
-    const ANG = 90 / (rows + 1);
+
+  /**
+   * 
+   *
+   *
+   */
+  let pyra = function(rows = 22, scale = 2, color = "#F22") {
     const RAD = rows * scale;
-    const LEN = (Math.PI / 2) / (rows + 1);
-    const TAN30 = Math.tan(30);
+    const ROWS = rows + 1;
+    const LEN = (Math.PI / 2) / ROWS;
 
-    let rotX = 0;
-    let rotY = 0;
-    let rowDeg = 0;
+    let angX = 90 / ROWS;
+    let rotX = 0, rotY = 0, rotZ = 0;
     let step = 1;
-    let xDeg = 90 / rows;
-    let yDeg = 0;
 
-    return _.times(rows, (row) => {
-      row = row + 1;
-      rowDeg -= xDeg;
-      rotX = rowDeg;
+    return _.times(ROWS, (row) => {
+      row += 1;
+      let angY = 0; // Not sure if needed.
+      let angZ = 60 / row;
+
+      if (row > 1) {
+        rotX -= angX;
+      }
       rotY = 0;
-      yDeg = 60 / row;
-
-      console.log("yDeg:", yDeg, "row:", row);
+      rotZ = 0;
 
       return _.times(row, (col) => {
         let transform = `
+          rotateZ(${rotZ}deg)
           rotateX(${rotX}deg)
-          rotateY(${rotY}deg)
           translateZ(${RAD}em)
         `;
 
         let dot = h('li.oz-orb-face-dot', {
           dataset: {
-            tri: 1,
+            tricon: 1,
             dot: step,
             rotX: rotX,
             rotY: rotY,
+            rotZ: rotZ,
           },
           style: {
             borderColor: color,
@@ -51,7 +56,7 @@ function renderEco() {
           }
         }, step);
 
-        rotY += yDeg;
+        rotZ -= angZ;
         step += 1;
 
         return dot;
@@ -60,7 +65,11 @@ function renderEco() {
   };
 
   let pyraFace = (color) => {
-    return h('ul.oz-orb-face', [
+    return h('ul.oz-orb-face', {
+      style: {
+        // transform: 'rotateX(3deg)',
+      }
+    }, [
       pyra(12, 1.5, color),
     ])
   };
