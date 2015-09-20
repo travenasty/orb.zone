@@ -20,11 +20,11 @@ function renderEco() {
     const ROWS = rows + 1;
     const LEN = (Math.PI / 2) / ROWS;
 
-    let angX = 90 / ROWS;
+    let angX = (90 / ROWS) ;
     let rotX = 0, rotY = 0, rotZ = 0;
     let step = 1;
 
-    return _.times(ROWS, (row) => {
+    return _.times(ROWS + 1, (row) => {
       row += 1;
       let angY = 0; // Not sure if needed.
       let angZ = 60 / row;
