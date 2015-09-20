@@ -148,11 +148,10 @@
 .oz-orb-face-dot {
   position: absolute;
   color: transparent;
-  font-size: 11px;
-  width: 1px;
-  height: 1px;
-  border: rgba(0,0,0, 0.3) 4px solid;
-  border-radius: 50%;
+  font-size: 12px;
+  width: 0;
+  height: 0;
+  border: rgba(0,0,0, 0.3) 0.4em solid;
   transform-origin: left;
   backface-visibility: hidden;
 }
