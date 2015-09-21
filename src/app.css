@@ -128,6 +128,7 @@
   margin: 0;
   padding: 0;
   transform-style: preserve-3d;
+  transition: all 0.3s;
 }
 .oz-orb-face:nth-child(2) {
   transform: rotateZ(60deg);
@@ -144,6 +145,10 @@
 .oz-orb-face:nth-child(6) {
   transform: rotateZ(300deg);
 }
+.oz-orb-face:hover {
+  transform: scale(2);
+  border-color: #000;
+}
 
 .oz-orb-face-dot {
   position: absolute;
@@ -154,6 +159,11 @@
   border: rgba(0,0,0, 0.3) 0.4em solid;
   transform-origin: left;
   backface-visibility: hidden;
+}
+
+.oz--thick .oz-orb-face-dot {
+  border-width: 0.8em;
+  border-radius: 50%;
 }
 
 /* JOBS */

@@ -21,67 +21,76 @@ function renderEco() {
     let rotX = 0, rotY = 0, rotZ = 0;
     let step = 1;
 
-    color = 'rgba(0,0,0, 0.3)';
+    return h('ul.oz-orb-face', [
+      _.times(ROWS, (row) => {
+        row += 1;
+        let angY = 0; // Not sure if needed.
+        let angZ = 60 / row;
 
-    return _.times(ROWS, (row) => {
-      row += 1;
-      let angY = 0; // Not sure if needed.
-      let angZ = 60 / row;
+        if (row > 1) {
+          rotX -= angX;
+        }
+        rotY = 0;
+        rotZ = 0;
 
-      if (row > 1) {
-        rotX -= angX;
-      }
-      rotY = 0;
-      rotZ = 0;
+        return _.times(row, (col) => {
+          let transform = `
+            rotateZ(${rotZ}deg)
+            rotateX(${rotX}deg)
+            translateZ(${RAD}em)
+          `;
 
-      return _.times(row, (col) => {
-        let transform = `
-          rotateZ(${rotZ}deg)
-          rotateX(${rotX}deg)
-          translateZ(${RAD}em)
-        `;
+          let dot = h('li.oz-orb-face-dot', {
+            dataset: {
+              tricon: 1,
+              dot: step,
+              rotX: rotX,
+              rotY: rotY,
+              rotZ: rotZ,
+            },
+            style: {
+              borderColor: color,
+              transform: transform,
+            }
+          }, step);
 
-        let dot = h('li.oz-orb-face-dot', {
-          dataset: {
-            tricon: 1,
-            dot: step,
-            rotX: rotX,
-            rotY: rotY,
-            rotZ: rotZ,
-          },
-          style: {
-            borderColor: color,
-            transform: transform,
-          }
-        }, step);
+          rotZ -= angZ;
+          step += 1;
 
-        rotZ -= angZ;
-        step += 1;
-
-        return dot;
+          return dot;
+        })
       })
-    });
-  };
-
-  let pyraFace = (color) => {
-    return h('ul.oz-orb-face', {
-      style: {
-        // transform: 'rotateX(3deg)',
-      }
-    }, [
-      pyra(12, 1.5, color),
-    ])
-  };
+    ]);
+  }
 
   return h('div.oz-eco', {
     attributes: {tabindex: "0"}
   }, [
     h('ul.oz-orb', [
       h('li.oz-orb-hemi', [
-        ["#F33","#3F3","#33F","#966","#696","#669"].map(pyraFace)
+        [
+          "#333","#444","#555","#666","#777","#888"
+        ].map( (color) => { return pyra(12, 1.5, color); })
       ]),
       h('li.oz-orb-hemi', [
-        ["#5AA","#A5A","#AA5","#CBB","#BCB","#BBC"].map(pyraFace)
+        [
+          "#666","#555","#444","#333","#222","#111"
+        ].map( (color) => { return pyra(12, 1.5, color); })
+      ]),
+    ]),
+
+    h('ul.oz-orb.oz--thick', [
+      h('li.oz-orb-hemi', [
+        [
+          "rgba(190,0,0,0.3)","rgba(190,0,0,0.3)","rgba(100,0,0,0.3)",
+          "rgba(190,0,0,0.3)","rgba(190,0,0,0.3)","rgba(100,0,0,0.3)"
+        ].map( (color) => { return pyra(6, 2.35, color); })
+      ]),
+      h('li.oz-orb-hemi', [
+        [
+          "rgba(0,0,0,0.3)","rgba(0,0,0,0.3)","rgba(0,0,0,0.3)",
+          "rgba(0,0,0,0.3)","rgba(0,0,0,0.3)","rgba(0,0,0,0.3)"
+        ].map( (color) => { return pyra(6, 2.35, color); })
       ]),
     ]),
 
