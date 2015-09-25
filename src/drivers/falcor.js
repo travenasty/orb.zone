@@ -1,4 +1,5 @@
 import {Rx} from '@cycle/core';
+import falcor from 'falcor/dist/falcor.browser.min';
 
 function makeFalcorSourceDriver(endpoint) {
   var model = new falcor.Model({
@@ -18,7 +19,7 @@ function makeFalcorSourceDriver(endpoint) {
 function makeFalcorSinkDriver(keyName) {
   return function (keyValue$) {
     keyValue$.subscribe(keyValue => {
-      console.log("write to falcor:", keyName, keyValue);
+      //console.log("write to falcor:", keyName, keyValue);
     });
   };
 }

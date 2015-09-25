@@ -17,6 +17,7 @@ function searchEcoIndex(ecosList, ecoid) {
   let bottom = 0;
   let pointerId;
   let index;
+
   for (var i = ecosList.length - 1; i >= 0; i--) { // binary search
     index = bottom + ((top - bottom) >> 1);
     pointerId = ecosList[index].id;
@@ -32,7 +33,19 @@ function searchEcoIndex(ecosList, ecoid) {
 }
 
 function makeModification$(actions) {
+
   let clearInputMod$ = actions.clearInput$.map(() => (ecosData) => {
+    return ecosData;
+  });
+
+  let spinEcoMod$ = actions.spinEco$.map((spin) => (ecosData) => {
+    console.log("ecosData:", ecosData);
+/*
+    $eco.style.transform = `
+      rotateX(${spin.x}deg)
+      rotateZ(${spin.y}deg)
+    `;
+*/
     return ecosData;
   });
 
@@ -77,7 +90,7 @@ function makeModification$(actions) {
   });
 
   return Rx.Observable.merge(
-    insertEcoMod$, deleteEcoMod$, toggleEcoMod$, toggleAllMod$,
+    insertEcoMod$, spinEcoMod$, deleteEcoMod$, toggleEcoMod$, toggleAllMod$,
     clearInputMod$, editEcoMod$
   );
 }

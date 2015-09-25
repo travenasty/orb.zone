@@ -1,6 +1,7 @@
 .oz-root {
   background: #EEE;
   color: #333;
+  user-select: none;
 }
 
 .oz-fig {
@@ -43,10 +44,6 @@
   top: 1em;
   border-radius: 50%;
   box-shadow: 0 0 0 1em #000;
-}
-.oz-eco:hover .oz-orb {
-  transform-origin: center;
-  transform: rotateX(45deg);
 }
 
 /* OUTER ORBIT GUIDELINES */
@@ -92,12 +89,14 @@
 
 
 /* INNER SPHERE */
+/*
 .oz-eco:hover .oz-orb {
   transform: rotateY(60deg) rotateX(30deg);
 }
 .oz-eco:focus .oz-orb {
   transform: rotateY(-90deg) rotateX(-60deg);
 }
+*/
 
 .oz-orb {
   font-family: sans-serif;
@@ -159,6 +158,15 @@
   border: rgba(0,0,0, 0.3) 0.4em solid;
   transform-origin: left;
   backface-visibility: hidden;
+}
+
+.oz--thick .oz-orb-face-dot.oz--solo {
+  border-color: rgba(218,228,238,0.7) !important;
+	transform-origin: center;
+	border-width: 9em;
+  position: absolute;
+	left: -9em;
+	top: -9em;
 }
 
 .oz--thick .oz-orb-face-dot {
