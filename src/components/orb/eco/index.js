@@ -22,6 +22,7 @@ function amendStateWithChildren(DOM) {
       }),
       filter: ecosData.filter,
       filterFn: ecosData.filterFn,
+      spin: ecosData.spin,
     }
   };
 }

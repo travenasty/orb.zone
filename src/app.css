@@ -21,6 +21,7 @@
   height: 32em;
   position: relative;
   transform-origin: center;
+  transform-style: preserve-3d;
 }
 .oz-eco:focus {
   outline: none;
@@ -144,10 +145,13 @@
 .oz-orb-face:nth-child(6) {
   transform: rotateZ(300deg);
 }
+
+/* 
 .oz-orb-face:hover {
   transform: scale(2);
   border-color: #000;
 }
+*/
 
 .oz-orb-face-dot {
   position: absolute;

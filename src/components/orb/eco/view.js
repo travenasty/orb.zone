@@ -1,6 +1,11 @@
 import {Rx} from '@cycle/core';
 import {h} from '@cycle/dom';
 import _ from 'lodash';
+import * as TweenMax from 'gsap/src/minified/TweenMax.min';
+
+console.log("gsap:", TweenMax);
+
+const log = console.log.bind(console);
 
 function renderCaption() {
   return h('figcaption.oz-fig-cap', 
@@ -8,8 +13,7 @@ function renderCaption() {
   );
 }
 
-function renderEco() {
-
+function renderEco(ecos) {
   /**
    * Generate the markup and plot sphere-face positions.
    */
@@ -63,52 +67,37 @@ function renderEco() {
     ]);
   }
 
+  let spinStyle = (ecos.spin) ? {
+    transform: `
+      rotateX(${ecos.spin.x}deg)
+      rotateY(${ecos.spin.y}deg)
+    `
+  } : {};
+
   return h('div.oz-eco', {
     attributes: {tabindex: "0"}
   }, [
-    h('ul.oz-orb', [
+    h('ul.oz-orb', {
+      style: spinStyle,
+    }, [
       h('li.oz-orb-hemi', [
         [
           "#666","#555","#444","#333","#222","#111"
-        ].map( (color) => { return pyra(12, 1.5, color); })
-      ]),
-    ]),
-
-    h('ul.oz-orb.oz--thick', [
-      h('li.oz-orb-hemi', [
-        h('ul.oz-orb-face', [
-          h('li.oz-orb-face-dot.oz--solo')
-        ])
+        ].map( (color) => { return pyra(6, 1.5, color); })
       ]),
       h('li.oz-orb-hemi', [
         [
-          "rgba(30,190,0,0.3)","rgba(0,60,180,0.3)","rgba(120,0,150,0.3)",
-          "rgba(200,20,0,0.3)","rgba(200,140,10,0.3)","rgba(210,210,0,0.3)"
-        ].map( (color) => { return pyra(6, 2.35, color); })
+          "#F00","#F0F","#FF0","#0FF","#0F0","#00F"
+        ].map( (color) => { return pyra(6, 1.5, color); })
       ]),
     ]),
-
-    h('ul.oz-orbit', {}, [
-      h('li.oz-cir'),
-      h('li.oz-cir'),
-      h('li.oz-cir'),
-      h('li.oz-cir'),
-    ]),
-
-    h('div#hacky', {style:{
-      position: "absolute",
-      width: "100px",
-      height: "100px",
-      background: "red",
-    }}),
-
   ]);
 }
 
 export default function view(ecos$) {
   return ecos$.map(ecos =>
     h('figure.oz-fig', [
-      renderEco(),
+      renderEco(ecos),
       renderCaption()
     ])
   );

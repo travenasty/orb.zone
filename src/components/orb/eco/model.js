@@ -1,5 +1,7 @@
 import {Rx} from '@cycle/core';
 
+const log = console.log.bind(console);
+
 function getFilterFn(route) {
   switch (route) {
     default: return () => true; // allow anything
@@ -39,13 +41,7 @@ function makeModification$(actions) {
   });
 
   let spinEcoMod$ = actions.spinEco$.map((spin) => (ecosData) => {
-    console.log("ecosData:", ecosData);
-/*
-    $eco.style.transform = `
-      rotateX(${spin.x}deg)
-      rotateZ(${spin.y}deg)
-    `;
-*/
+    ecosData.spin = spin;
     return ecosData;
   });
 
